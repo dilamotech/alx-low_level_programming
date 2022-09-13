@@ -1,9 +1,12 @@
-#include"main.h"
-/*
- * main.h - prints _putchar
- * Return (0) if success
+#include "main.h"
+
+/**
+ * main- prints putchar
+ * Desctiption this is my own header file
+ * Return:always 0
  *
  */
+
 int main(void)
 {
 	_putchar('_');
