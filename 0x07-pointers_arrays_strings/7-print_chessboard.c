@@ -1,4 +1,4 @@
-#include "main.h"
+#include "holberton.h"
 /**
  * print_chessboard - print in the terminal the chessboard
  * @a: The character to print
@@ -6,14 +6,14 @@
  */
 void print_chessboard(char(*a)[8])
 {
-	int d;
-	int f;
+	int b;
+	int c;
 
-	for (d = 0; d < 8; d++)
+	for (b = 0; b < 8; b++)
 	{
-		for (f = 0; f < 8; f++)
+		for (c = 0; c < 8; c++)
 		{
-			_putchar(a[d][f]);
+			_putchar(a[b][c]);
 		}
 		_putchar('\n');
 	}
