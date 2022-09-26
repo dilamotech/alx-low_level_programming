@@ -1,20 +1,25 @@
-#include "holberton.h"
-/**
- * print_chessboard - print in the terminal the chessboard
- * @a: The character to print
- *
- */
-void print_chessboard(char(*a)[8])
-{
-	int b;
-	int c;
+#include "main.h"
 
-	for (b = 0; b < 8; b++)
+/**
+ * print_chessboard - function that prints the chessboard
+ * @a: array of chars
+ * Return: void
+ */
+
+void print_chessboard(char (*a)[8])
+{
+	int x, y;
+
+	x = 0;
+	while (x < 8)
 	{
-		for (c = 0; c < 8; c++)
+		y = 0;
+		while (y < 8)
 		{
-			_putchar(a[b][c]);
+			_putchar (a[x][y]);
+			y++;
 		}
-		_putchar('\n');
+		_putchar ('\n');
+		x++;
 	}
 }
