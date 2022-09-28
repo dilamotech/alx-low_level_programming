@@ -1,34 +1,23 @@
-#include "main.h"
+#include "holberton.h"
 /**
- * square_root - find the natural square root
- * @i: number
- * @j: incrementor
+ * _pow_recursion - returns the value of x raised of the power of y
+ * @x: base
+ * @y: power
  *
- * Return: the number found
+ * Return: the power
  */
-int square_root(int i, int j)
+int _pow_recursion(int x, int y)
 {
-	if (i * i == j)
-	{
-		return (i);
-	}
-	else if (i * i > j)
+	if (y < 0)
 	{
 		return (-1);
 	}
+	else if (y == 0)
+	{
+		return (1);
+	}
 	else
 	{
-		return (square_root(i + 1, j));
+		return (x * _pow_recursion(x, y - 1));
 	}
-}
-/**
- * _sqrt_recursion - returns the natural square root of a number
- * @n: number
- * Return: the natural square root found
- */
-int _sqrt_recursion(int n)
-{
-	int a = 1;
-
-	return (square_root(a, n));
 }
