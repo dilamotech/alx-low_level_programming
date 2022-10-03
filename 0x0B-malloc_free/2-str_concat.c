@@ -1,5 +1,4 @@
 #include "main.h"
-#include<stdio.h>
 
 /**
  * _len - calculate length of two strings.
