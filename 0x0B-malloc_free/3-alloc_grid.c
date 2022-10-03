@@ -13,7 +13,7 @@ int **alloc_grid(int width, int height)
 
 	if (width <= 0 || height <= 0)
 	{
-		return ('\0');
+		return (NULL);
 	}
 
 	net = malloc(sizeof(int *) * height);
@@ -34,10 +34,11 @@ int **alloc_grid(int width, int height)
 			free(net);
 			return (NULL);
 		}
-		for (b = 0 ; b < width ; b++)
-		{
-			net[a][b] = 0;
-		}
 	}
+		for (b = 0 ; b < width ; b++)
+		
+			net[a][b] = 0;
+		
+	
 	return (net);
 }
