@@ -1,91 +1,73 @@
 #include "main.h"
-#include <stdlib.h>
+#include<stdio.h>
 
 /**
- * _strlen - give the length of a string
- * @s: the string
+ * _len - calculate length of two strings.
+ * @s1: The address of the first string.
+ * @s2: The address of the second string.
+ * @n: Condition cheker.
  *
- * Return: the length of a string
+ * Return: The length of the string if success.
+ * on error 0.
  */
-int _strlen(char *s)
+int _len(char *s1, char *s2, int n)
 {
-	int i;
+	int i, len;
 
-	for (i = 0 ; s[i] != '\0' ; i++)
-		;
-	return (i);
+	i = len = 0;
+	if (n != 3)
+	{
+		while (n != 1 && *(s1 + len) != '\0')
+			len++;
+		while (n != 2 && *(s2 + i) != '\0')
+			i++;
+		len = len + i + 1;
+	}
+	if (n == 3)
+		len = 1;
+	return (len);
 }
 
 /**
- * _strcat - concatenates two strings
- * @dest: input parameter string
- * @src: input parameter string
+ * str_concat - concats two strings.
+ * @s1: The address of the first string.
+ * @s2: The address of the second string.
  *
- * Return: dest
- */
-char *_strcat(char *dest, char *src)
-{
-	int a;
-	int b;
-
-	a = 0;
-
-	while (dest[a] != 0)
-	{
-		a++;
-	}
-
-	b = 0;
-
-	while (src[b] != 0)
-	{
-		dest[a] = src[b];
-		a++;
-		b++;
-	}
-	return (dest);
-}
-
-/**
- * str_concat - concatenate to strings
- * @s1: the string to print
- * @s2: the string to print
- *
- * Return: pointer that contains the content of s1 followed by s2
+ * Return: The new address for the concated string
+ * on error NULL.
  */
 char *str_concat(char *s1, char *s2)
 {
-	int length;
-	char *space;
+	int len, i, j, n;
+	char *p;
 
-	if (s1 == '\0')
+	p = NULL;
+	len = i = j = n = 0;
+	if (s1 == NULL)
+		n = 1;
+	if (s2 == NULL)
+		n = n + 2;
+	len = _len(s1, s2, n);
+	p = malloc(sizeof(*p) * len);
+	if (p != NULL)
 	{
-		s1 = "";
-	}
-	if (s2 == '\0')
-	{
-		s2 = "";
-	}
-
-	length = _strlen(s1) + _strlen(s2);
-	if (s1 != '\0' && s2 != '\0')
-	{
-		space = malloc(sizeof(char) * length + 1);
-
-		if (space == '\0')
+		if (n != 3)
 		{
-			return ('\0');
+			while (n != 1 && *(s1 + i) != '\0')
+			{
+				*(p + i) = *(s1 + i);
+				i++;
+			}
+			while (n != 2 && *(s2 + j) != '\0')
+			{
+				*(p + i) = *(s2 + j);
+				i++;
+				j++;
+			}
 		}
-		else
-		{
-			space = _strcat(space, s1);
-			space = _strcat(space, s2);
-		}
+		if (n == 3)
+			*p = '\0';
 	}
-	else
-	{
-		space = "";
-	}
-	return (space);
-	free(space);
+	return (p);
+
 }
