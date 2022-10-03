@@ -1,86 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "main.h"
 
-char *_strcat(char *dest, char *src);
 
 /**
- * argstostr - concatenates all the arguments
- * @av: the content
- * @ac: the size of the content
+ * _strlen - returns the length of a given string
  *
- * Return: a pointer to a new string
+ *
+ * @s: string to check the length of
+ * Return: returns the length of the string
  */
-char *argstostr(int ac, char **av)
+int _strlen(char *s)
 {
-	char *new, *salt;
-	int i, j, k;
+	int i;
 
-	if (ac == 0 || av == NULL)
-	{
-		return (NULL);
-	}
-	else
-	{
-		for (i = 0, k = 0 ; i < ac ; i++, k++)
-		{
-			for (j = 0 ; av[i][j] != '\0' ; j++, k++)
-			{
-				;
-			}
-		}
-		new = malloc(sizeof(char) * (k + 1));
-		salt = "\n";
-		for (i = 0 ; i < ac ; i++)
-		{
-			new = _strcat(new, av[i]);
-			if (new == NULL)
-			{
-				return (NULL);
-			}
-			if (i + 1 < ac)
-			{
-				new = _strcat(new, salt);
-				if (new == NULL)
-				{
-					return (NULL);
-				}
-			}
-		}
-
-	}
-	new = _strcat(new, salt);
-	if (new == NULL)
-	{
-		return (NULL);
-	}
-	return (new);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 /**
- * _strcat - concatenates two strings
- * @dest: input parameter string
- * @src: input parameter string
+ * _strcat - concat strings, src appended to dest
  *
- * Return: dest
+ * @dest: destination string
+ * @src: source string
+ * Return: returns finished string
  */
 char *_strcat(char *dest, char *src)
 {
-	int a;
-	int b;
+	int i, j;
 
-	a = 0;
-
-	while (dest[a] != 0)
-	{
-		a++;
-	}
-
-	b = 0;
-
-	while (src[b] != 0)
-	{
-		dest[a] = src[b];
-		a++;
-		b++;
-	}
+	i = j = 0;
+	while (dest[i] != '\0')
+		i++;
+	while (src[j] != '\0')
+		dest[i++] = src[j++];
+	dest[i] = '\0';
 	return (dest);
+}
+
+/**
+ * argstostr - concats together program arguments into one string
+ *
+ *
+ * @ac: argument count
+ * @av: arguments
+ * Return: returns pointer to completed string
+ */
+char *argstostr(int ac, char **av)
+{
+	char *string;
+	int len, i;
+
+	if (ac == 0 || av == NULL)
+		return (NULL);
+	len = 1;
+	i = 0;
+	while (i < ac)
+	{
+		len += _strlen(av[i]) + 1;
+		i++;
+	}
+	string = malloc(len * sizeof(char));
+	if (string == NULL)
+		return (NULL);
+	i = 0;
+	while (i < ac)
+	{
+		_strcat(string, av[i++]);
+		_strcat(string, "\n");
+	}
+	if (!string)
+		return (NULL);
+	return (string);
 }
